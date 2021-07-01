@@ -24,21 +24,24 @@ namespace Kriogen109
             var rotate_to = encode_data_stream ? input_data.Length : input_data_split.Length;
             var data_result = new StringBuilder();
             for (int i = 0; i < rotate_to; i++)
-            {
-                if (encode_data_stream && data_decode.ContainsValue(input_data[i]))
-                {
-                    var key = data_decode.FirstOrDefault(k => k.Value == input_data[i]).Key;
-                    data_result.Append(key + (char)32);
-                }
-                else if (!encode_data_stream && data_decode.ContainsKey(input_data_split[i]))
-                    data_result.Append(data_decode[input_data_split[i]]);
-            }
+                Update_data_stream(input_data, encode_data_stream, input_data_split, data_result, i);
 
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine(string.Join("", data_result));
             Console.ResetColor();
             Console.WriteLine();
             Kriogen109.Wolf_Pack.Terminate();
+        }
+
+        private static void Update_data_stream(string input_data, bool encode_data_stream, string[] input_data_split, StringBuilder data_result, int i)
+        {
+            if (encode_data_stream && data_decode.ContainsValue(input_data[i]))
+            {
+                var key = data_decode.FirstOrDefault(k => k.Value == input_data[i]).Key;
+                data_result.Append(key + (char)32);
+            }
+            else if (!encode_data_stream && data_decode.ContainsKey(input_data_split[i]))
+                data_result.Append(data_decode[input_data_split[i]]);
         }
 
         private static string[] Load_splitted_input(string input_data)
