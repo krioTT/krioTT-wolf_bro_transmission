@@ -33,7 +33,8 @@ namespace Kriogen109
             Kriogen109.Wolf_Pack.Terminate();
         }
 
-        private static void Update_data_stream(string input_data, bool encode_data_stream, string[] input_data_split, StringBuilder data_result, int i)
+        private static void Update_data_stream(string input_data, bool encode_data_stream,
+            string[] input_data_split, StringBuilder data_result, int i)
         {
             if (encode_data_stream && data_decode.ContainsValue(input_data[i]))
             {
