@@ -19,9 +19,8 @@ namespace Kriogen109
             else if (char.IsLetterOrDigit(input_data[0]))
                 encode_data_stream = true;
             else
-            {
                 input_data_split = Load_splitted_input(input_data);
-            }
+
             var rotate_to = encode_data_stream ? input_data.Length : input_data_split.Length;
             var data_result = new StringBuilder();
             for (int i = 0; i < rotate_to; i++)
@@ -43,12 +42,9 @@ namespace Kriogen109
         }
 
         private static string[] Load_splitted_input(string input_data)
-        {
-            return input_data
-                            .Split(new char[] { (char)32, '\t' },
-                            StringSplitOptions.RemoveEmptyEntries)
-                            .ToArray();
-        }
+           => input_data.Split(new char[] { (char)32, '\t' },
+                         StringSplitOptions.RemoveEmptyEntries)
+                         .ToArray();
 
         private static void Terminate()
         {
