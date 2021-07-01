@@ -20,10 +20,7 @@ namespace Kriogen109
                 encode_data_stream = true;
             else
             {
-                input_data_split = input_data
-                .Split(new char[] { (char)32, '\t' },
-                StringSplitOptions.RemoveEmptyEntries)
-                .ToArray();
+                input_data_split = Load_splitted_input(input_data);
             }
             var rotate_to = encode_data_stream ? input_data.Length : input_data_split.Length;
             var data_result = new StringBuilder();
@@ -44,6 +41,15 @@ namespace Kriogen109
             Console.WriteLine();
             Kriogen109.Wolf_Pack.Terminate();
         }
+
+        private static string[] Load_splitted_input(string input_data)
+        {
+            return input_data
+                            .Split(new char[] { (char)32, '\t' },
+                            StringSplitOptions.RemoveEmptyEntries)
+                            .ToArray();
+        }
+
         private static void Terminate()
         {
             Console.WriteLine(" Press ENTER to exit");
